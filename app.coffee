@@ -1,5 +1,8 @@
-#ports to listen on
-expressPort = 8081
+#config file
+config = require("./conf")
+
+#set production environment variable
+process.env.NODE_ENV = config.node_env
 
 #require stylus
 stylus = require("stylus")
@@ -9,7 +12,7 @@ nib = require("nib")
 coffeeScript = require("coffee-script")
 connectCoffeescript = require("connect-coffee-script")
 
-#express
+#express + socket.io
 express = require("express")
 app = express()
 http = require("http")
@@ -20,7 +23,8 @@ io = sio.listen(server)
 #set socket.io log level 1-3
 io.set "log level", 1
 io.enable "browser client minification"
-io.enable "browser client gzip"
+#doesn't work in windows :(
+#io.enable "browser client gzip"
 io.enable "browser client etag"
 
 #jade
@@ -65,5 +69,5 @@ io.sockets.on "connection", (socket) ->
 
 console.log "Running server in mode: " + app.settings.env
 
-server.listen expressPort
-console.log 'Express on port: ' + expressPort
+server.listen config.expressPort
+console.log 'Express on port: ' + config.expressPort
