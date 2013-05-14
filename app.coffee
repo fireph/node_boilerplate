@@ -41,13 +41,13 @@ app.configure ->
         secret: "sessiontestappsecret"
     )
     app.use stylus.middleware(
-        src: __dirname + "/views" # .styl files are located in `views/css`
+        src: __dirname + "/uncompiled" # .styl files are located in `uncompiled/css`
         dest: __dirname + "/static" # .styl resources are compiled `static/css/*.css`
         compile: (str, path) -> # optional, but recommended
             stylus(str).set("filename", path).set("compress", true).use(nib())
     )
     app.use connectCoffeescript(
-        src: __dirname + "/views" # .coffee files are located in `views/js`
+        src: __dirname + "/uncompiled" # .coffee files are located in `uncompiled/js`
         dest: __dirname + "/static" # .coffee resources are compiled `static/js/*.js`
         compile: (str, options) -> # optional, but recommended
             options.bare = true
@@ -61,11 +61,15 @@ mongo = require("mongoskin")
 db = mongo.db("localhost:27017/"+config.mongoDatabase+"?auto_reconnect", {safe: true})
 
 app.get "/", (req, res) ->
-    res.render "jade/index"
+    res.render "index",
+        title: "testPage"
+        layout: "layout"
 
 io.sockets.on "connection", (socket) ->
     socket.on "testEvent", (data) ->
-        console.log "This is a test Event!"
+        console.log "Test event fired on server!"
+    socket.on "disconnect", ->
+        console.log "User disconnected."
 
 console.log "Running server in mode: " + app.settings.env
 
