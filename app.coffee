@@ -1,9 +1,3 @@
-#config file
-config = require("./conf")
-
-#set production environment variable
-process.env.NODE_ENV = config.node_env
-
 #require stylus
 stylus = require("stylus")
 nib = require("nib")
@@ -11,6 +5,12 @@ nib = require("nib")
 #require coffeescript
 coffeeScript = require("coffee-script")
 connectCoffeescript = require("connect-coffee-script")
+
+#config file
+config = require("./conf")
+
+#set production environment variable
+process.env.NODE_ENV = config.node_env
 
 #express + socket.io
 express = require("express")
@@ -28,17 +28,17 @@ io.enable "browser client minification"
 io.enable "browser client etag"
 
 #jade
-jade = require('jade')
+jade = require("jade")
 
 #config express
 app.configure ->
     app.use express.compress()
-    app.set 'views', __dirname + '/views'
-    app.set 'view engine', 'jade'
+    app.set "views", __dirname + "/views"
+    app.set "view engine", "jade"
     app.use express.cookieParser()
     app.use express.bodyParser()
     app.use express.session(
-        secret: 'sessiontestappsecret'
+        secret: "sessiontestappsecret"
     )
     app.use stylus.middleware(
         src: __dirname + "/views" # .styl files are located in `views/css`
@@ -53,14 +53,14 @@ app.configure ->
             options.bare = true
             coffeeScript.compile(str, options)
     )
-    app.use express.static(__dirname + '/static')
+    app.use express.static(__dirname + "/static")
     app.use app.router
 
 #mongoskin
-mongo = require('mongoskin')
-db = mongo.db('localhost:27017/testApp?auto_reconnect', {safe: true})
+mongo = require("mongoskin")
+db = mongo.db("localhost:27017/"+config.mongoDatabase+"?auto_reconnect", {safe: true})
 
-app.get '/', (req, res) ->
+app.get "/", (req, res) ->
     res.render "jade/index"
 
 io.sockets.on "connection", (socket) ->
@@ -70,4 +70,4 @@ io.sockets.on "connection", (socket) ->
 console.log "Running server in mode: " + app.settings.env
 
 server.listen config.expressPort
-console.log 'Express on port: ' + config.expressPort
+console.log "Express on port: " + config.expressPort
