@@ -1,0 +1,10 @@
+!!! 5
+html(lang="en")
+    head
+        block title
+        link(rel="stylesheet", href="/css/master.css")
+        script(src="/socket.io/socket.io.js")
+        script(data-main="/js/main.js", src="/components/requirejs/require.js")
+        block scripts
+    body
+        block page
