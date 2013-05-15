@@ -8,8 +8,8 @@
         "components"
     ],
     "dependencies": {
-        "jquery": "2.0.x",
-        "underscore": "1.4.x",
+        "jquery": "2.0.0",
+        "underscore": "1.4.4",
         "requirejs": "2.1.x"
     }
 }
