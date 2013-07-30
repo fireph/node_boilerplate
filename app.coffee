@@ -6,6 +6,9 @@ nib = require("nib")
 coffeeScript = require("coffee-script")
 connectCoffeescript = require("connect-coffee-script")
 
+#uglify-js
+uglifyJs = require("uglify-js")
+
 #config file
 config = require("./conf")
 
@@ -49,9 +52,14 @@ app.configure ->
     app.use connectCoffeescript(
         src: __dirname + "/uncompiled" # .coffee files are located in `uncompiled/js`
         dest: __dirname + "/static" # .coffee resources are compiled `static/js/*.js`
-        compile: (str, options) -> # optional, but recommended
+        compile: (str, options, coffeePath) -> # optional, but recommended
             options.bare = true
-            coffeeScript.compile(str, options)
+            code = coffeeScript.compile(str, options)
+            if config.minifyJs
+                code = uglifyJs.minify(code,
+                    fromString: true
+                ).code
+            code
     )
     app.use express.static(__dirname + "/static")
     app.use app.router

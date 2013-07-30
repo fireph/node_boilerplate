@@ -5,27 +5,33 @@
     "main": "app.coffee",
     "scripts": {
         "start": "coffee app.coffee",
-        "forever-start": "forever -l logfile-art.log -a start -c coffee app.coffee",
+        "forever-start": "forever -l logfile-testApp.log -a start -c coffee app.coffee",
         "forever-stop": "forever -a stop -c coffee app.coffee",
         "forever-list": "forever list",
         "bower": "bower install",
         "nodemon": "nodemon app.coffee"
     },
-    "repository": "",
+    "repository": {
+        "type" : "git",
+        "url" : "https://github.com/User/testApp.git"
+    },
     "author": "Author <email@gmail.com>",
     "license": "SUPER RESTRICTIVE",
     "dependencies": {
-        "express": "3.0.x",
-        "jade": "0.30.x",
-        "mongoskin": "0.5.x",
+        "express": "3.3.x",
+        "jade": "0.34.x",
         "socket.io": "0.9.x",
-        "jade": "0.30.x",
-        "stylus": "0.32.x",
+        "stylus": "0.35.x",
         "nib": "0.9.x",
+        "mongoskin": "0.6.x",
         "connect-coffee-script": "0.1.x",
         "coffee-script": "1.6.x",
         "forever": "0.10.x",
-        "bower": "0.9.x",
-        "nodemon": "0.7.x"
+        "bower": "1.0.x",
+        "nodemon": "0.7.x",
+        "uglify-js": "2.3.x"
+    },
+    "engines": {
+        "node": ">=0.10.0"
     }
 }
