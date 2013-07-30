@@ -1,11 +1,11 @@
 require.config
     paths:
         jquery: [
-            "https://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min"
+            "//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min"
             "/components/jquery/jquery"
         ]
         underscore: [
-            "https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.4.4/underscore-min"
+            "//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.1/underscore-min"
             "/components/underscore/underscore"
         ]
         util: "/js/lib/util"
