@@ -8,8 +8,9 @@
         "components"
     ],
     "dependencies": {
-        "jquery": "2.0.x",
-        "underscore": "1.5.x",
+        "jquery": "2.0.3",
+        "underscore": "1.5.2",
+        "angular": "1.0.8",
         "requirejs": "2.1.x"
     }
 }
