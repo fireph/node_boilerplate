@@ -18,7 +18,7 @@
     "author": "Author <email@gmail.com>",
     "license": "SUPER RESTRICTIVE",
     "dependencies": {
-        "express": "3.4.x",
+        "express": "4.17.x",
         "jade": "0.35.x",
         "socket.io": "0.9.x",
         "stylus": "0.38.x",
