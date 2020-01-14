@@ -27,7 +27,7 @@
         "connect-coffee-script": "0.1.x",
         "coffee-script": "1.6.x",
         "forever": "0.10.x",
-        "bower": "1.2.x",
+        "bower": "1.8.x",
         "nodemon": "0.7.x",
         "uglify-js": "2.4.x"
     },
